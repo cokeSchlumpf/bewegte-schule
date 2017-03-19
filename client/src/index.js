@@ -1,4 +1,4 @@
-import './index.css';
+import 'semantic-ui-css/semantic.min.css';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
 

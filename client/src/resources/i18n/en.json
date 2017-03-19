@@ -1,3 +1,10 @@
 {
-  "example": "Example"
+  "example": "Example",
+  "projectselection": {
+    "github": "GitHub",
+    "load": "Load Repository",
+    "local": "Local System",
+    "placeholder-github": "GitHub Repository name (e.g. cokeSchlumpf/wellnr-codewalk",
+    "placeholder-local": "Local path (e.g. /home/michael/project"
+  }
 }

@@ -1,21 +1,20 @@
-import './style.css';
-
+import { Container } from 'semantic-ui-react'
 import HelloWorld from '../HelloWorld';
+import ProjectSelection from '../projectselection';
 import React from 'react';
-import logo from './logo.svg';
 
 const App = () => {
   return (
-    <div className="App">
+    <Container fluid={ true }>
+      <ProjectSelection />
       <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h2>Welcome to React</h2>
       </div>
       <p className="App-intro">
         To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       <HelloWorld />
-    </div>
+    </Container>
   );
 }
 
