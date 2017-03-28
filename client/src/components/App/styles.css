@@ -1,0 +1,68 @@
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#root > div {
+  min-height: 100%;
+  width: 100%;
+}
+
+.app-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 3;
+
+  background-color: #fff;
+  box-shadow: 0 0 2.25rem #9da5ab;
+}
+
+.app-content {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  background-color: #fff;
+}
+
+.app-projecttree-container {
+  display: block;
+  flex: 2 2 0;
+  height: auto;
+  z-index: 2;
+
+  box-shadow: 0 0 0.5rem #9da5ab;
+  background-color: #fff;
+  padding: 2.4rem;
+}
+
+.app-main-container {
+  display: flex;
+  flex: 14 14 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.app-code-container {
+  flex: 5 5 0;
+  height: auto;
+  padding: 2.4rem;
+  background-color: #f7f7f7;
+  box-shadow: 0 0 0.5rem #9da5ab;
+  z-index: 1;
+}
+
+.app-doc-container {
+  flex: 2 2 0;
+  height: auto;
+  padding: 2.4rem;
+}

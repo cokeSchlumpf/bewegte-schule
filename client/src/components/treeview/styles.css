@@ -1,0 +1,7 @@
+.item.treeview-item {
+  cursor: pointer;
+}
+
+.item.treeview-item-selected {
+  font-weight: bold;
+}

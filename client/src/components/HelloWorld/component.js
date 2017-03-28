@@ -7,7 +7,7 @@ const HelloWorld = ({ value, onChangeValue }) => {
 
   return (
     <div>
-      <input type="text" value={value} onChange={onChangeHandler} />
+      <input type="text" value={value} onChange={ () => {} } />
     </div>
   );
 }

@@ -1,0 +1,27 @@
+{
+  "title": "Root",
+  "children": [
+    {
+      "title": "src",
+      "collapsed": false,
+      "children": [
+        {
+          "title": "app.js"
+        }
+      ]
+    },
+    {
+      "title": "docs",
+      "collapsed": true,
+      "children": [
+        {
+          "title": "about.md"
+        }
+      ]
+    },
+    {
+      "title": "README.md",
+      "icon": "file"
+    }
+  ]
+}
