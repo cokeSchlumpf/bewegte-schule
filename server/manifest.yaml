@@ -1,0 +1,4 @@
+---
+applications:
+ - name: bewegte-schule
+   memory: 256M
