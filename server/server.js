@@ -1,14 +1,13 @@
-
 'use strict'
 
-const _ = require('lodash')
+const _ = require('lodash');
 const bodyParser = require('body-parser');
-const chalk = require('chalk')
+const chalk = require('chalk');
 const cookieParser = require('cookie-parser');
-const express = require('express')
+const express = require('express');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const msg = require('gulp-messenger')
+const msg = require('gulp-messenger');
 const path = require('path');
 
 const app = express()

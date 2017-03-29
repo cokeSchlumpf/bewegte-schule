@@ -2,11 +2,15 @@ import { applyMiddleware, compose, createStore } from 'redux';
 
 import { Iterable } from 'immutable';
 import { createEpicMiddleware } from 'redux-observable';
+import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
+import { history } from '../routes';
 import reduxLoggerFactory from 'redux-logger';
 import rootEpic from './epics';
 import rootReducer from './reducers';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
+
+const routerMiddleware = createRouterMiddleware(history);
 
 const reduxLoggerMiddleware = reduxLoggerFactory({ 
   stateTransformer: (state) => {
@@ -23,7 +27,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 
 const store = createStore(rootReducer,
   composeEnhancers(
-    applyMiddleware(epicMiddleware, reduxLoggerMiddleware)
+    applyMiddleware(epicMiddleware, reduxLoggerMiddleware, routerMiddleware)
   )
 );
 

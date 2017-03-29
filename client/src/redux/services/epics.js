@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import project from './project/epics';
+import pseudonyms from './pseudonyms/epics';
 
 export default _.concat(
   [],
-  project);
+  pseudonyms);

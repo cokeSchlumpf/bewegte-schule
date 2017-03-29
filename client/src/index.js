@@ -1,4 +1,5 @@
 import 'semantic-ui-css/semantic.min.css';
+import './styles.css';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
 
@@ -24,7 +25,7 @@ const language = isoCode.substring(0, 2);
 ReactDOM.render(
     <Provider store={ store }>
       <IntlProvider defaultLocale='en' locale={ language } messages={ messages[language] }>
-        <Routes history={ browserHistory } />
+        <Routes />
       </IntlProvider>
     </Provider>,
     document.getElementById('root')

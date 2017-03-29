@@ -1,7 +1,7 @@
 import combineReducers from 'redux-immutable-combine-reducers';
 import { fromJS } from 'immutable';
-import project from './project/reducers';
+import pseudonyms from './pseudonyms/reducers';
 
 export default combineReducers(fromJS({
-  project
+  pseudonyms
 }));

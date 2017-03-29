@@ -1,30 +1,23 @@
-import './styles.css';
-
-import { Button, Divider, Form, Grid, Image, Segment } from 'semantic-ui-react'
-
+import Component from './component';
 import React from 'react';
-import imgParagraph from './images/media-paragraph.png';
+import actions from '../../redux/login/actions';
+import { connect } from 'react-redux';
 
-const Login = () => {
-  return (
-    <Grid className="login-grid" verticalAlign="middle" container centered>
-      <Grid.Column>
-        <Image src={ imgParagraph } size="medium" />
-        <Segment>
-          <Form>
-            <Form.Input placeholder="Pseudonym" icon="user" iconPosition="left" />
-            <Form.Input placeholder="Passwort" type="password" icon="lock" iconPosition="left" />
-            <Button type="submit" primary>Anmelden</Button>
-          </Form>
-          <Divider horizontal>oder</Divider>
-          <Form>
-            <Form.Input placeholder="Codewort" icon="asterisk" iconPosition="left" />
-            <Button type="submit">Pseudonym erstellen</Button>
-          </Form>
-        </Segment>
-      </Grid.Column>
-    </Grid>
-  )
-}
+const mapStateToProps = (state) => {
+  return state.toJS().login;
+};
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCreatepseudonymClick: () => dispatch(actions.createpseudonymClick()),
+    onLoginClick: () => dispatch(actions.loginClick()),
+    onValueChange: (value) => dispatch(actions.valueChange(value)),
+  };
+};
+
+const VisibleComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);
+
+export default VisibleComponent;
