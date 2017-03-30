@@ -14,13 +14,11 @@ export const history = createHistory();
 
 const Routes = (props) => (
   <Router history={ history } {...props}>
-    <div>
-      <Switch>
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-        <Route path='*' component={NotFound} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path='/login' component={Login} />
+      <Route exact path='/register' component={Register} />
+      <Route path='*' component={NotFound} />
+    </Switch>
   </Router>
 );
 

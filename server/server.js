@@ -1,6 +1,7 @@
 'use strict'
 
 const _ = require('lodash');
+const api = require('./api');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const cookieParser = require('cookie-parser');
@@ -21,6 +22,9 @@ app.use(cookieParser());
 // all static content can be routed if its URL is entered explicitly
 app.use(express.static(path.join(__dirname, 'public')));
 
+// bind API routes
+app.use('/api', api);
+
 // for all other routes see /client/src/routes.js
 app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
@@ -37,7 +41,7 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3010));
 
 // lets startup this puppy
 app.listen(app.get('port'), () => {
