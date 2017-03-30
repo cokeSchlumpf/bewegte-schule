@@ -8,8 +8,8 @@ export const loginClick = () => (
   { type: types.LOGIN_CLICK, payload: { } }
 );
 
-export const valueChange = (value) => (
-  { type: types.VALUE_CHANGE, payload: { value } }
+export const valueChange = (payload) => (
+  { type: types.VALUE_CHANGE, payload }
 );
 
 export default {

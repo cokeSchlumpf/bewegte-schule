@@ -1,5 +1,4 @@
 import Component from './component';
-import React from 'react';
 import actions from '../../redux/login/actions';
 import { connect } from 'react-redux';
 

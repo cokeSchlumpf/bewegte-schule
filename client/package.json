@@ -18,7 +18,9 @@
     "redux-observable": "^0.14.1",
     "rxjs": "^5.2.0",
     "semantic-ui-css": "^2.2.9",
-    "semantic-ui-react": "^0.67.1"
+    "semantic-ui-react": "^0.67.1",
+    "underscore": "^1.8.3",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
@@ -29,5 +31,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-express": "npm run build && rm -rf ../server/public; cp -R ./build ../server/public"
-  }
+  },
+  "proxy": "http://localhost:3010"
 }

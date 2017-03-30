@@ -1,4 +1,4 @@
-import { keepState, mergePayload } from '../../../utils/redux-state-func'
+import { keepState, mergePayloadIn } from '../../../utils/redux-state-func'
 
 import { fromJS } from 'immutable';
 import types from '../actions/types';
@@ -15,7 +15,7 @@ const createpseudonymClick = keepState;
 
 const loginClick = keepState;
 
-const valueChange = mergePayload;
+const valueChange = mergePayloadIn('value');
 
 export default (state = initialState, action) => {
   switch (action.type) {

@@ -1,9 +1,8 @@
 const express = require('express');
+const pseudonyms = require('./pseudonyms');
 
 const api = express.Router();
 
-api.get('/pseudonyms', (req, res) => {
-  res.send('hello world');
-});
+api.use('/pseudonyms', pseudonyms);
 
 module.exports = api;

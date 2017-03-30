@@ -1,37 +1,21 @@
-import { Button, Container, Form, Header, Icon, Segment } from 'semantic-ui-react'
+import Component from './component';
+import actions from '../../redux/register/actions';
+import { connect } from 'react-redux';
 
-import LoginGrid from '../../elements/LoginGrid';
-import React from 'react';
+const mapStateToProps = (state) => {
+  return state.toJS().register;
+};
 
-const Login = () => {
-  return (
-    <LoginGrid>
-      <Segment>
-        <Header size="large">
-          <Icon name="user" />
-          <Header.Content>
-            <Header.Subheader>
-              Dein Pseudonym ist
-            </Header.Subheader>
-            hanky_jordan
-          </Header.Content>
-        </Header>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        </p>
-      </Segment>
-      <Segment>
-        <Form>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.
-          </p>
-          <Form.Input label="Passwort" type="password" icon="lock" iconPosition="left" />
-          <Form.Input label="Passwort wiederholen" type="password" icon="lock" iconPosition="left" />
-          <Button type="submit" primary disabled>Registrierung abschließen</Button>
-        </Form>
-      </Segment>
-    </LoginGrid>
-  )
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSubmit: () => dispatch(actions.submit()),
+    onValueChange: (value) => dispatch(actions.valueChange(value)),
+  };
+};
 
-export default Login;
+const VisibleComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);
+
+export default VisibleComponent;

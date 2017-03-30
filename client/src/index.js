@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './routes';
-import { browserHistory } from 'react-router';
 import en from 'react-intl/locale-data/en';
 import enMessages from './resources/i18n/en.json'
 import flattenObject from './utils/flatten-object';

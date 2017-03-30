@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint \"./**/*.js\"",
     "lint": "npm run lint",
-    "start:dev": "nodemon --watch views --watch src --watch public -e js,twig,html,css server.js",
+    "start:dev": "nodemon --watch views --watch src --watch public --watch api --watch config -e js,twig,html,css server.js",
     "start:dep": "ENV=deployment node server.js",
     "start": "npm run start:dev",
     "test": "mocha --compilers js:babel-core/register",
@@ -15,6 +15,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
+    "docker-names": "^1.0.3",
     "express": "4.14.0",
     "gulp-messenger": "0.25.3",
     "lodash": "4.17.2",

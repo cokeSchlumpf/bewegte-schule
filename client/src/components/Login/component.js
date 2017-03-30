@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import LoginGrid from '../../elements/LoginGrid';
 import _ from 'lodash';
 import noop from '../../utils/noop';
+import { onFormValueChangeHandler } from '../../utils/react-utils';
 
 const Login = ({ value = {}, onValueChange = noop, onLoginClick = noop, onCreatepseudonymClick = noop }) => {
   const onLoginClickHandler = (event) => {
@@ -13,17 +14,12 @@ const Login = ({ value = {}, onValueChange = noop, onLoginClick = noop, onCreate
   };
 
   const onCreatepseudonymClickHandler = (event) => {
-    console.log("UGUZGZUGZUUGUUZU")
     onCreatepseudonymClick();
     event.stopPropagation();
     event.preventDefault();
   }
 
-  const onValueChangeHandler = (field) => (event, data) => {
-    onValueChange(_.assign({}, value, {
-      [field]: data.value
-    }));
-  };
+  const onValueChangeHandler = onFormValueChangeHandler(value, onValueChange);
 
   const isLoginDisabled = () =>
     !(_.isString(value.pseudonym) && _.size(value.pseudonym) > 0
@@ -31,11 +27,11 @@ const Login = ({ value = {}, onValueChange = noop, onLoginClick = noop, onCreate
 
   const isCreatepseudonymDisabled = () =>
     !(_.isString(value.code) && _.size(value.code) > 0);
-    
+
   return (
     <LoginGrid>
       <Segment>
-        <Form onSubmit={ onLoginClickHandler }>
+        <Form onSubmit={onLoginClickHandler}>
           <Form.Input
             placeholder="Pseudonym" icon="user" iconPosition="left"
             value={value.pseudonym} onChange={onValueChangeHandler('pseudonym')} />
@@ -44,15 +40,15 @@ const Login = ({ value = {}, onValueChange = noop, onLoginClick = noop, onCreate
             placeholder="Passwort" type="password" icon="lock" iconPosition="left"
             value={value.password} onChange={onValueChangeHandler('password')} />
 
-          <Button type="submit" disabled={isLoginDisabled()} primary onClick={ onLoginClickHandler }>Anmelden</Button>
+          <Button type="submit" disabled={isLoginDisabled()} primary onClick={onLoginClickHandler}>Anmelden</Button>
         </Form>
         <Divider horizontal>oder</Divider>
-        <Form onSubmit={ onCreatepseudonymClickHandler }>
+        <Form onSubmit={onCreatepseudonymClickHandler}>
           <Form.Input
             placeholder="Codewort" icon="asterisk" iconPosition="left"
             value={value.code} onChange={onValueChangeHandler('code')} />
 
-          <Button type="submit" disabled={isCreatepseudonymDisabled()} onClick={ onCreatepseudonymClickHandler }>Pseudonym erstellen</Button>
+          <Button type="submit" disabled={isCreatepseudonymDisabled()} onClick={onCreatepseudonymClickHandler}>Pseudonym erstellen</Button>
         </Form>
       </Segment>
     </LoginGrid>

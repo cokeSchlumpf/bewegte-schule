@@ -1,12 +1,27 @@
 import 'rxjs';
 
-import actions from '../actions';
+import { createFail, createSuccess, updateFail, updateSuccess } from '../actions';
+
+import FetchClient from '../../../../utils/fetch-client';
 import types from '../actions/types';
+
+const service = new FetchClient('/api/pseudonyms');
 
 export const createEpic = (action$) => action$
   .ofType(types.CREATE)
-  .mapTo(actions.createSuccess({ pseudonym: 'foolish_farmer' }));
+  .mergeMap(action => service
+    .create(action.payload)
+    .then(createSuccess)
+    .catch(createFail));
+
+export const updateEpic = (action$) => action$
+  .ofType(types.UPDATE)
+  .mergeMap(action => service
+    .update(action.payload)
+    .then(updateSuccess)
+    .catch(updateFail));
 
 export default [
-  createEpic
+  createEpic,
+  updateEpic
 ]
