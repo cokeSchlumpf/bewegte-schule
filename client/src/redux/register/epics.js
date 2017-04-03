@@ -3,6 +3,7 @@ import 'rxjs';
 import { LOCATION_CHANGE, push } from 'react-router-redux';
 
 import _ from 'lodash';
+import serviceTypes from '../services/types';
 import services from '../services/actions';
 import types from './types';
 
@@ -21,12 +22,18 @@ export const submitEpic = (action$, store) => action$
     const state = store.getState().toJS().register;
 
     return services.pseudonyms.update({
+      code: state.code,
       pseudonym: state.pseudonym,
       password: state.value.password
     });
   });
 
+export const servicesPseudonymsUpdateSuccessEpic = (action$, store) => action$
+  .ofType(serviceTypes.pseudonyms.UPDATE_SUCCESS)
+  .map(action => push('login'));
+
 export default [
   routerEpic,
-  submitEpic
+  submitEpic,
+  servicesPseudonymsUpdateSuccessEpic
 ]

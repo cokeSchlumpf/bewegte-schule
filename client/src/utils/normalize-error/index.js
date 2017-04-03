@@ -1,9 +1,7 @@
 import _ from 'lodash';
 
 export default (error) => {
-  console.log(error);
   const fault = _.get(error, 'Fault.detail.WebServiceFault.faults.fault');
-
   let normalizedError;
 
   if (fault) {
@@ -14,9 +12,9 @@ export default (error) => {
     }
   } else {
     normalizedError = {
-      message: error.message,
-      messageKey: error.messageKey || 'internal-application-error',
-      parameters: error.parameters || {}
+      message: _.get(error, 'error.message', ''),
+      messageKey: _.get(error, 'error.messageKey', 'internal-application-error'),
+      parameters: _.get(error, 'error.parameters', {})
     }
   }
 

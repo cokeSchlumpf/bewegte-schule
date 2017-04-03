@@ -1,4 +1,4 @@
-import { Button, Form, Header, Icon, Segment } from 'semantic-ui-react'
+import { Button, Form, Header, Icon, Message, Segment } from 'semantic-ui-react'
 
 import LoginGrid from '../../elements/LoginGrid';
 import React from 'react';
@@ -6,7 +6,7 @@ import _ from 'lodash';
 import noop from '../../utils/noop';
 import { onFormValueChangeHandler } from '../../utils/react-utils';
 
-const Login = ({ pseudonym = 'no_name', value = {}, onSubmit = noop, onValueChange = noop }) => {
+const Login = ({ error, pseudonym = 'no_name', value = {}, onSubmit = noop, onValueChange = noop }) => {
   const onSubmitHandler = (event) => {
     onSubmit();
     event.stopPropagation();
@@ -37,7 +37,7 @@ const Login = ({ pseudonym = 'no_name', value = {}, onSubmit = noop, onValueChan
         </p>
       </Segment>
       <Segment>
-        <Form onSubmit={onSubmitHandler}>
+        <Form onSubmit={onSubmitHandler} error={!_.isUndefined(error)}>
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.
           </p>
@@ -48,6 +48,8 @@ const Login = ({ pseudonym = 'no_name', value = {}, onSubmit = noop, onValueChan
           <Form.Input
             label="Passwort wiederholen" type="password" icon="lock" iconPosition="left"
             value={value.passwordRepeat} onChange={onValueChangeHandler('passwordRepeat')} />
+
+          {error && <Message error content={error} />}
 
           <Button type="submit" onClick={onSubmitHandler} primary disabled={!arePasswordsEqual()}>Registrierung abschließen</Button>
         </Form>
