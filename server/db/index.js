@@ -1,3 +1,5 @@
+'use strict'
+
 const _ = require('lodash');
 const cfenv = require('cfenv');
 const Cloudant = require('cloudant');
