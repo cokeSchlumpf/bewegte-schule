@@ -1,4 +1,5 @@
 const config = require('../../config');
+const db = require('../../db');
 const dockerNames = require('docker-names');
 const express = require('express');
 
@@ -20,7 +21,8 @@ api.post('/', (req, res) => {
       pseudonym,
       code: req.body.code
     });
-  } else {
+  }
+  else {
     res.status(401);
     res.send({
       error: {
