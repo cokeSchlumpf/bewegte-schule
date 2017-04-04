@@ -10,6 +10,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const msg = require('gulp-messenger');
 const path = require('path');
+const winston = require('winston');
 
 const app = express()
 
@@ -32,13 +33,15 @@ app.get('*', function (request, response) {
 
 // error handler
 app.use((err, req, res, next) => {
+  winston.error('Unhandled error', err);
+  
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json(err);
 });
 
 app.set('port', (process.env.PORT || 3010));

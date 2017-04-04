@@ -1,24 +1,38 @@
+const _ = require('lodash');
 const cfenv = require('cfenv');
 const Cloudant = require('cloudant');
+const config = require('../config');
 const devdb = require('./local-dev');
+const winston = require('winston');
 
-console.log('Services:');
-console.log(cfenv.getAppEnv());
-console.log(cfenv.getAppEnv().getServices());
-console.log(cfenv.getAppEnv().getService('cloudantNoSQLDB'));
-
+const dbname = _.lowerCase((process.env.NODE_ENV || 'dev')) + '-' + config.dbname;
 const service = cfenv.getAppEnv().getService('cloudantNoSQLDB') || devdb;
 const url = service[0].credentials.url;
-const account = service[0].credentials.username;
-const password = service[0].credentials.password;
+const cloudant = Cloudant({ url });
 
-const cloudant = Cloudant({ vcapServices: JSON.parse(process.env.VCAP_SERVICES) });
-cloudant.db.list((err, allDbs) => {
-  console.log('All my databases: %s', allDbs.join(', '))
-});
+let db;
+let callback = [
+  (db$) => {
+    db = db$;
+    winston.info(`Initialized database "${dbname}"`);
+  }
+]
 
-console.log(url);
-console.log(username);
-console.log(password);
+// try to create the database if it does not exist yet
+cloudant.db.create(dbname, (err) => {
+  if (err) {
+    winston.info(`Error creating database with name "${dbname}" - Database already exists.`);
+  }
+  
+  db = cloudant.db.use(dbname);
+  _.each(callback, cb => cb(db));
+})
 
-module.exports = {};
+module.exports = (callback$) => {
+  if (db) {
+    callback$(db);
+  } 
+  else {
+    callback = _.concat(callback, callback$);
+  }
+};

@@ -1,3 +1,4 @@
 module.exports = {
-  code: 'gas'
+  code: 'gas',
+  'dbname': 'gas'
 };
