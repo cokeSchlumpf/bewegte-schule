@@ -28,7 +28,8 @@
     "winston": "^2.3.1"
   },
   "engines": {
-    "node": "4.0.0"
+    "node": "6.6.0",
+    "npm": "3.10.3"
   },
   "repository": {
     "type": "git",
