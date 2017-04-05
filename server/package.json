@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint \"./**/*.js\"",
     "lint": "npm run lint",
-    "start:dev": "nodemon --watch views --watch src --watch public --watch api --watch db --watch config -e js,twig,html,css server.js",
+    "start:dev": "nodemon --watch src --watch public --watch api --watch db --watch config -e js,twig,html,css server.js",
     "start:dep": "ENV=deployment node server.js",
     "start": "npm run start:dev",
     "test": "mocha --compilers js:babel-core/register",
@@ -23,6 +23,7 @@
     "lodash": "4.17.2",
     "md5": "^2.2.1",
     "morgan": "^1.8.1",
+    "node-schedule": "^1.2.1",
     "path": "^0.12.7",
     "serve-favicon": "^2.4.2",
     "winston": "^2.3.1"

@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const api = require('./api');
+const batch = require('./batch');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const cookieParser = require('cookie-parser');
@@ -34,7 +35,7 @@ app.get('*', function (request, response) {
 // error handler
 app.use((err, req, res, next) => {
   winston.error('Unhandled error', err);
-  
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -54,3 +55,5 @@ app.listen(app.get('port'), () => {
   const serverInfo = chalk.yellow(`http://localhost:${app.get('port')}`);
   msg.success('=', _.pad(`Application Running On: ${serverInfo}`, 80), '=')
 });
+
+batch();
