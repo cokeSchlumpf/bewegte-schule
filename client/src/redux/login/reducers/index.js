@@ -9,6 +9,7 @@ export const initialState = fromJS({
     code: undefined,
     login: undefined
   },
+  isLoading: false,
   value: {
     code: '',
     password: '',
@@ -22,6 +23,12 @@ const loginClick = keepState;
 
 const valueChange = mergePayloadIn('value');
 
+const pseudonymsCreate = (state, payload) => {
+  return state.merge({
+    isLoading: true
+  });
+}
+
 const pseudonymsCreateFail = (state, payload) => {
   let message;
 
@@ -31,9 +38,13 @@ const pseudonymsCreateFail = (state, payload) => {
     message = 'Leider ist ein Fehler aufgetreten, bitte versuche es noch einmal.';
   }
 
-  return mergePayloadIn('errors')(state, {
-    code: message
-  });
+  return state
+    .mergeIn(['errors'], {
+      code: message
+    })
+    .merge({
+      isLoading: false
+    });
 }
 
 const pseudonymsCreateSuccess = () => initialState;
@@ -48,6 +59,9 @@ export default (state = initialState, action) => {
 
     case types.VALUE_CHANGE:
       return valueChange(state, action.payload);
+
+    case serviceTypes.pseudonyms.CREATE:
+      return pseudonymsCreate(state, action.payload);
 
     case serviceTypes.pseudonyms.CREATE_FAIL:
       return pseudonymsCreateFail(state, action.payload);

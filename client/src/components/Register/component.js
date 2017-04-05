@@ -6,7 +6,7 @@ import _ from 'lodash';
 import noop from '../../utils/noop';
 import { onFormValueChangeHandler } from '../../utils/react-utils';
 
-const Login = ({ error, pseudonym = 'no_name', value = {}, onSubmit = noop, onValueChange = noop }) => {
+const Login = ({ error, isLoading = false, pseudonym = 'no_name', value = {}, onSubmit = noop, onValueChange = noop }) => {
   const onSubmitHandler = (event) => {
     onSubmit();
     event.stopPropagation();
@@ -16,9 +16,16 @@ const Login = ({ error, pseudonym = 'no_name', value = {}, onSubmit = noop, onVa
   const onValueChangeHandler = onFormValueChangeHandler(value, onValueChange);
 
   const arePasswordsEqual = () =>
-    _.size(value.password || '') > 0
-    && _.size(value.passwordRepeat || '') > 0
+    _.size(_.trim(value.password) || '') > 0
+    && _.size(_.trim(value.passwordRepeat) || '') > 0
     && _.isEqual(value.password, value.passwordRepeat);
+
+  const buttonText = () =>
+    (!arePasswordsEqual()
+      && _.size(value.password || '') > 0
+      && _.size(value.passwordRepeat || '') > 0
+      && 'Die angegebenen Passwörter stimmen nicht überein')
+    || 'Registrierung abschließen';
 
   return (
     <LoginGrid>
@@ -37,7 +44,10 @@ const Login = ({ error, pseudonym = 'no_name', value = {}, onSubmit = noop, onVa
         </p>
       </Segment>
       <Segment>
-        <Form onSubmit={onSubmitHandler} error={!_.isUndefined(error)}>
+        <Form
+          onSubmit={onSubmitHandler}
+          error={!_.isUndefined(error)}>
+
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.
           </p>
@@ -51,7 +61,14 @@ const Login = ({ error, pseudonym = 'no_name', value = {}, onSubmit = noop, onVa
 
           {error && <Message error content={error} />}
 
-          <Button type="submit" onClick={onSubmitHandler} primary disabled={!arePasswordsEqual()}>Registrierung abschließen</Button>
+          <Button
+            type="submit"
+            onClick={onSubmitHandler}
+            primary
+            disabled={!arePasswordsEqual()}
+            loading={isLoading}>
+            {buttonText()}
+          </Button>
         </Form>
       </Segment>
     </LoginGrid>

@@ -6,7 +6,7 @@ import _ from 'lodash';
 import noop from '../../utils/noop';
 import { onFormValueChangeHandler } from '../../utils/react-utils';
 
-const Login = ({ errors = {}, message, value = {}, onValueChange = noop, onLoginClick = noop, onCreatepseudonymClick = noop }) => {
+const Login = ({ errors = {}, isLoading = false, value = {}, onValueChange = noop, onLoginClick = noop, onCreatepseudonymClick = noop }) => {
   const onLoginClickHandler = (event) => {
     onLoginClick();
     event.stopPropagation();
@@ -46,7 +46,7 @@ const Login = ({ errors = {}, message, value = {}, onValueChange = noop, onLogin
             placeholder="Passwort" type="password" icon="lock" iconPosition="left"
             value={value.password} onChange={onValueChangeHandler('password')} />
 
-          { errormessage(errors.login) }
+          {errormessage(errors.login)}
 
           <Button type="submit" disabled={isLoginDisabled()} primary onClick={onLoginClickHandler}>Anmelden</Button>
         </Form>
@@ -56,9 +56,15 @@ const Login = ({ errors = {}, message, value = {}, onValueChange = noop, onLogin
             placeholder="Codewort" icon="asterisk" iconPosition="left"
             value={value.code} onChange={onValueChangeHandler('code')} />
 
-          { errormessage(errors.code) }
+          {errormessage(errors.code)}
 
-          <Button type="submit" disabled={isCreatepseudonymDisabled()} onClick={onCreatepseudonymClickHandler}>Pseudonym erstellen</Button>
+          <Button
+            type="submit"
+            loading={isLoading}
+            disabled={isCreatepseudonymDisabled()}
+            onClick={onCreatepseudonymClickHandler}>
+            Pseudonym erstellen
+          </Button>
         </Form>
       </Segment>
     </LoginGrid>

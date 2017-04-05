@@ -7,6 +7,7 @@ import types from './types';
 export const initialState = fromJS({
   error: undefined,
   code: undefined,
+  isLoading: false,
   pseudonym: '',
   value: {
     password: '',
@@ -24,9 +25,14 @@ const valueChange = mergePayloadIn('value')
 
 const pseudonymsCreateSuccess = mergePayload;
 
+const pseudonymsUpdate = (state) => {
+  return state.merge({ isLoading: true });
+}
+
 const pseudonymsUpdateFail = (state) => {
   return mergePayload(state, {
-    error: 'Leider ist ein Fehler aufgetreten, bitte versuche es später noch einmal.'
+    error: 'Leider ist ein Fehler aufgetreten, bitte versuche es später noch einmal.',
+    isLoading: false
   });
 }
 
@@ -48,6 +54,9 @@ export default (state = initialState, action) => {
 
     case serviceTypes.pseudonyms.CREATE_SUCCESS:
       return pseudonymsCreateSuccess(state, action.payload);
+
+    case serviceTypes.pseudonyms.UPDATE:
+      return pseudonymsUpdate(state, action.payload);
 
     case serviceTypes.pseudonyms.UPDATE_FAIL:
       return pseudonymsUpdateFail(state, action.payload);
