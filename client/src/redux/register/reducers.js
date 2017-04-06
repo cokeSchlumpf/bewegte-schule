@@ -29,9 +29,15 @@ const pseudonymsUpdate = (state) => {
   return state.merge({ isLoading: true });
 }
 
-const pseudonymsUpdateFail = (state) => {
+const pseudonymsUpdateFail = (state, payload) => {
+  let message = 'Leider ist ein Fehler aufgetreten, bitte versuche es später noch einmal.';
+
+  if (payload.error.messageKey === 2) {
+    message = 'Das Pseudonym ist dem Server nicht bekannt. Eventuell ist seit dem Anlegen zu viel Zeit verstrichen. Bitte registriere dich noch einmal.';
+  }
+
   return mergePayload(state, {
-    error: 'Leider ist ein Fehler aufgetreten, bitte versuche es später noch einmal.',
+    error: message,
     isLoading: false
   });
 }
