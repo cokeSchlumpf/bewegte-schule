@@ -1,7 +1,7 @@
 import { keepState, mergePayload, mergePayloadIn } from '../../utils/redux-state-func';
 
 import { fromJS } from 'immutable';
-import serviceTypes from '../services/types';
+import { types as serviceTypes } from '../services/actions';
 import types from './types';
 
 export const initialState = fromJS({

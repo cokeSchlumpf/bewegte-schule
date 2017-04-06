@@ -1,6 +1,6 @@
 import 'rxjs';
 
-import types from './types';
+import { types } from './actions';
 
 export const submitEpic = (action$, store) => action$
   .ofType(types.SUBMIT)

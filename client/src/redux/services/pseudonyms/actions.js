@@ -1,4 +1,14 @@
-import types from './types';
+import constantsFromArray from '../../../../utils/constants-from-array';
+
+export const types = constantsFromArray([
+  'CREATE',
+  'CREATE_SUCCESS',
+  'CREATE_FAIL',
+
+  'UPDATE',
+  'UPDATE_SUCCESS',
+  'UPDATE_FAIL'
+], 'SERVICES_PSEUDONYMS_');
 
 export const create = (payload) => (
   { type: types.CREATE, payload }

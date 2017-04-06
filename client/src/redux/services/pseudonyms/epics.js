@@ -3,7 +3,7 @@ import 'rxjs';
 import { createFail, createSuccess, updateFail, updateSuccess } from '../actions';
 
 import FetchClient from '../../../../utils/fetch-client';
-import types from '../actions/types';
+import { types } from './actions';
 
 const service = new FetchClient('/api/pseudonyms');
 

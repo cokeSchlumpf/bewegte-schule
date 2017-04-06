@@ -1,4 +1,12 @@
-import types from './types';
+import constantsFromArray from '../../utils/constants-from-array';
+
+export const types = constantsFromArray([
+  'SUBMIT',
+  'SUBMIT_FAIL',
+  'SUBMIT_SUCCESS',
+  
+  'VALUE_CHANGE'
+], 'REGISTER_');
 
 export const submit = () => (
   { type: types.SUBMIT, payload: {} }

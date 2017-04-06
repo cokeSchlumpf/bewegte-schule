@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import types from './types';
+import { types } from './actions';
 
 export const initialState = fromJS({
   value: "",

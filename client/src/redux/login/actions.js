@@ -1,4 +1,10 @@
-import types from './types';
+import constantsFromArray from '../../../utils/constants-from-array';
+
+export const types = constantsFromArray([
+  'CREATEPSEUDONYM_CLICK',
+  'LOGIN_CLICK',
+  'VALUE_CHANGE'
+], 'LOGIN_');
 
 export const createpseudonymClick = () => (
   { type: types.CREATEPSEUDONYM_CLICK, payload: { } }

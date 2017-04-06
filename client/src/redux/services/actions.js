@@ -1,5 +1,10 @@
+import pseudonyms, { pseudonymTypes } from './pseudonyms/actions';
+
 import _ from 'lodash';
-import pseudonyms from './pseudonyms/actions';
+
+export const types = {
+  pseudonymTypes
+};
 
 export default {
   pseudonyms

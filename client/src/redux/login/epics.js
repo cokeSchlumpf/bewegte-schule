@@ -1,10 +1,10 @@
 import 'rxjs';
 
+import services, { types as serviceTypes } from '../../services/actions';
+
 import _ from 'lodash';
 import { push } from 'react-router-redux'
-import serviceTypes from '../../services/types';
-import services from '../../services/actions';
-import types from '../actions/types';
+import { types } from './actions';
 
 export const createpseudonymClickEpic = (action$, store) => action$
   .ofType(types.CREATEPSEUDONYM_CLICK)

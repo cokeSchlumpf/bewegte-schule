@@ -1,10 +1,9 @@
 import 'rxjs';
 
 import { LOCATION_CHANGE, push } from 'react-router-redux';
+import services, { types as serviceTypes } from '../services/actions';
 
 import _ from 'lodash';
-import serviceTypes from '../services/types';
-import services from '../services/actions';
 import types from './types';
 
 export const routerEpic = (action$, store) => action$
