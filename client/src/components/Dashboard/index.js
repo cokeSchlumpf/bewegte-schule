@@ -1,9 +1,21 @@
-import React, { PropTypes } from 'react';
+import Component from './component';
+import actions from '../../redux/dashboard/actions';
+import { connect } from 'react-redux';
 
-const Dashboard = () => {
-  return (
-    <div>Dashbaord</div>
-  );
-}
+const mapStateToProps = (state) => ({
+  
+});
 
-module.exports = Dashboard;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogoutClick: () => dispatch(actions.logoutClick()),
+    onSurveyButtonClick: () => dispatch(actions.surveyRedirect())
+  };
+};
+
+const VisibleComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);
+
+export default VisibleComponent;

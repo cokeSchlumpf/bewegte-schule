@@ -9,14 +9,13 @@ export const initialState = fromJS({
   errors: {
     code: undefined,
     login: undefined
-  }, 
+  },
   isLoading: {
     code: undefined,
     login: undefined
   },
   loginSuccesRoute: '/',
   registerSuccess: false,
-  user: undefined,
   value: {
     code: '',
     password: '',
@@ -40,12 +39,12 @@ const loginLoginFail = (state, payload) => {
   let message;
 
   message = 'Fehler aufgetreten!';
-  
+
   switch (_.get(payload, 'error.messageKey', 0)) {
     case 6:
     case 7:
-       message = 'Pseudonym oder Passwort falsch.'
-       break;
+      message = 'Pseudonym oder Passwort falsch.'
+      break;
     case 8:
       message = 'Das Pseudonym ist gesperrt. Das Passwort wurde zu oft falsch eingegeben. Bitte wende dich die Studienleitung.'
       break;
@@ -66,9 +65,7 @@ const loginLoginFail = (state, payload) => {
     });
 };
 
-const loginLoginSuccess = (state, payload) => {
-  return initialState.merge(payload);
-};
+const loginLoginSuccess = () => initialState;
 
 const pseudonymsCreate = (state, payload) => {
   return state.mergeIn(['isLoading'], {

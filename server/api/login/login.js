@@ -2,6 +2,7 @@ const _ = require('lodash');
 const cloudant = require('../../db');
 const errors = require('../errors');
 const md5 = require('md5');
+const uuid = require('uuid');
 const winston = require('winston');
 
 module.exports = (req, res) => {
@@ -32,10 +33,14 @@ module.exports = (req, res) => {
           }
           else {
             const user = docs[0];
+            const passwordHash = md5(password);
 
-            if (_.isEqual(md5(password), user.password) && user.attempts < 3) {
+            if (_.isEqual(passwordHash, user.password) && user.attempts < 3) {
+              const token = uuid.v4();
               const uuser = _.assign({}, user, {
-                attempts: 0
+                attempts: 0,
+                token,
+                lastActivity: Date.now()
               });
 
               db.insert(uuser, (err) => {
@@ -44,8 +49,19 @@ module.exports = (req, res) => {
                 }
                 else {
                   winston.info(`Successful login of user ${uuser.pseudonym}.`);
-                  res.json({ 
-                    user: { pseudonym } 
+
+                  res.cookie('auth',
+                    {
+                      token
+                    },
+                    {
+                      maxAge: 60 * 60 * 1000,
+                      httpOnly: false,
+                      secure: false
+                    });
+
+                  res.json({
+                    user: { pseudonym }
                   });
                 }
               });

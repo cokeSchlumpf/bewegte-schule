@@ -67,6 +67,7 @@ export default class FetchClient {
       method: method,
       mode: 'cors',
       redirect: 'follow',
+      credentials: 'include',
       headers: args.headers,
       body: _.isDefined(args.body) ? JSON.stringify(args.body) : undefined
     };

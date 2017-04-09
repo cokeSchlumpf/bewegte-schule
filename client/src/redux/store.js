@@ -4,6 +4,7 @@ import { Iterable } from 'immutable';
 import { createEpicMiddleware } from 'redux-observable';
 import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
 import { history } from '../routes';
+import { init } from './app/actions';
 import reduxLoggerFactory from 'redux-logger';
 import rootEpic from './epics';
 import rootReducer from './reducers';
@@ -30,5 +31,7 @@ const store = createStore(rootReducer,
     applyMiddleware(epicMiddleware, reduxLoggerMiddleware, routerMiddleware)
   )
 );
+
+store.dispatch(init());
 
 export default store;

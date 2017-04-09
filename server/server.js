@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const loginMiddleware = require('./api/login/login-middleware');
 const msg = require('gulp-messenger');
 const path = require('path');
 const winston = require('winston');
@@ -20,6 +21,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(loginMiddleware.cookieParser);
 
 // all static content can be routed if its URL is entered explicitly
 app.use(express.static(path.join(__dirname, 'public')));
