@@ -1,4 +1,4 @@
-import { Button, Divider, Form, Message, Segment } from 'semantic-ui-react'
+import { Button, Divider, Form, Icon, Message, Segment } from 'semantic-ui-react'
 import React, { PropTypes } from 'react';
 
 import LoginGrid from '../../elements/LoginGrid';
@@ -6,7 +6,7 @@ import _ from 'lodash';
 import noop from '../../utils/noop';
 import { onFormValueChangeHandler } from '../../utils/react-utils';
 
-const Login = ({ errors = {}, isLoading = false, value = {}, onValueChange = noop, onLoginClick = noop, onCreatepseudonymClick = noop }) => {
+const Login = ({ errors = {}, isLoading = {}, registerSuccess, value = {}, onValueChange = noop, onLoginClick = noop, onCreatepseudonymClick = noop }) => {
   const onLoginClickHandler = (event) => {
     onLoginClick();
     event.stopPropagation();
@@ -34,8 +34,18 @@ const Login = ({ errors = {}, isLoading = false, value = {}, onValueChange = noo
 
   const errormessage = (message) => message && <Message error content={message} />;
 
+  const renderRegisterSuccessMessage = () => registerSuccess && (
+    <Message icon positive>
+      <Icon name='checkmark' />
+      <Message.Content>
+        <Message.Header>Pseudonym erfolgreich erstellt</Message.Header>
+        Ab sofort kannst du dich mit deinem Pseudonym und deinem Benutzername hier anmelden.
+    </Message.Content>
+    </Message>
+  );
+
   return (
-    <LoginGrid>
+    <LoginGrid message={renderRegisterSuccessMessage()}>
       <Segment>
         <Form onSubmit={onLoginClickHandler} error={loginFormError}>
           <Form.Input
@@ -48,7 +58,12 @@ const Login = ({ errors = {}, isLoading = false, value = {}, onValueChange = noo
 
           {errormessage(errors.login)}
 
-          <Button type="submit" disabled={isLoginDisabled()} primary onClick={onLoginClickHandler}>Anmelden</Button>
+          <Button
+            type="submit"
+            loading={isLoading.login}
+            disabled={isLoginDisabled()}
+            primary
+            onClick={onLoginClickHandler}>Anmelden</Button>
         </Form>
         <Divider horizontal>oder</Divider>
         <Form onSubmit={onCreatepseudonymClickHandler} error={codeFormError}>
@@ -60,7 +75,7 @@ const Login = ({ errors = {}, isLoading = false, value = {}, onValueChange = noo
 
           <Button
             type="submit"
-            loading={isLoading}
+            loading={isLoading.code}
             disabled={isCreatepseudonymDisabled()}
             onClick={onCreatepseudonymClickHandler}>
             Pseudonym erstellen

@@ -2,7 +2,6 @@ const _ = require('lodash');
 const cfenv = require('cfenv');
 const Cloudant = require('cloudant');
 const config = require('../config');
-const createIndexes = require('./indexes');
 const devdb = require('./local-dev');
 const winston = require('winston');
 
@@ -20,17 +19,13 @@ let callback = [
 ]
 
 // try to create the database if it does not exist yet
-cloudant.db.destroy(dbname, () => {
-  cloudant.db.create(dbname, (err) => {
-    if (err) {
-      winston.info(`Error creating database with name "${dbname}" - Database already exists.`);
-    }
+cloudant.db.create(dbname, (err) => {
+  if (err) {
+    winston.info(`Error creating database with name "${dbname}" - Database already exists.`);
+  }
 
-    db = cloudant.db.use(dbname);
-    createIndexes(db, () => {
-      _.each(callback, cb => cb(db));
-    });
-  });
+  db = cloudant.db.use(dbname);
+  _.each(callback, cb => cb(db));
 });
 
 module.exports = (callback$) => {

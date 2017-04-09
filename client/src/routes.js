@@ -3,6 +3,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
 import React from 'react';
@@ -15,6 +16,7 @@ export const history = createHistory();
 const Routes = (props) => (
   <Router history={ history } {...props}>
     <Switch>
+      <Route exact path='/' component={Dashboard} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/register' component={Register} />
       <Route path='*' component={NotFound} />

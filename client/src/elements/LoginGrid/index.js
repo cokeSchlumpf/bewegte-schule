@@ -5,13 +5,14 @@ import { Grid, Image, Segment } from 'semantic-ui-react'
 import React from 'react';
 import imgParagraph from './images/media-paragraph.png';
 
-const LoginGrid = ({ children }) => {
+const LoginGrid = ({ message, children }) => {
   return (
     <Grid className="logingrid" verticalAlign="middle" container centered>
       <Grid.Column>
-        <Image src={ imgParagraph } size="medium" />
+        <Image src={imgParagraph} size="medium" />
+        { message }
         <Segment.Group>
-          { children }
+          {children}
         </Segment.Group>
       </Grid.Column>
     </Grid>

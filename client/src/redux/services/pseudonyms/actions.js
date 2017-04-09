@@ -1,4 +1,4 @@
-import constantsFromArray from '../../../../utils/constants-from-array';
+import constantsFromArray from '../../../utils/constants-from-array';
 
 export const types = constantsFromArray([
   'CREATE',
@@ -14,8 +14,8 @@ export const create = (payload) => (
   { type: types.CREATE, payload }
 );
 
-export const createFail = (payload) => (
-  { type: types.CREATE_FAIL, payload }
+export const createFail = (error) => (
+  { type: types.CREATE_FAIL, payload: { error } }
 );
 
 export const createSuccess = (payload) => (

@@ -31,7 +31,9 @@ module.exports = (req, res) => {
           }
           else {
             winston.info(`Updated password for "${pseudonym}".`);
-            res.json(req.body);
+            res.json({
+              pseudonym
+            });
           }
         })
       }

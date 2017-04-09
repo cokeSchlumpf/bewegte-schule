@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint \"./**/*.js\"",
     "lint": "npm run lint",
-    "start:dev": "nodemon --watch src --watch public --watch api --watch db --watch config -e js,twig,html,css server.js",
+    "start:dev": "nodemon --watch batch.js --watch src --watch public --watch api --watch db --watch config -e js,twig,html,css server.js",
     "start:dep": "ENV=deployment node server.js",
     "start": "npm run start:dev",
     "test": "mocha --compilers js:babel-core/register",

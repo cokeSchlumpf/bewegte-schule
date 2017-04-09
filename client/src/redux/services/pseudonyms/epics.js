@@ -1,8 +1,8 @@
 import 'rxjs';
 
-import { createFail, createSuccess, updateFail, updateSuccess } from '../actions';
+import { createFail, createSuccess, updateFail, updateSuccess } from './actions';
 
-import FetchClient from '../../../../utils/fetch-client';
+import FetchClient from '../../../utils/fetch-client';
 import { types } from './actions';
 
 const service = new FetchClient('/api/pseudonyms');

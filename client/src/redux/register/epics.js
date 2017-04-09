@@ -4,7 +4,7 @@ import { LOCATION_CHANGE, push } from 'react-router-redux';
 import services, { types as serviceTypes } from '../services/actions';
 
 import _ from 'lodash';
-import types from './types';
+import { types } from './actions';
 
 export const routerEpic = (action$, store) => action$
   .ofType(LOCATION_CHANGE)

@@ -19,7 +19,9 @@ const createPseudonym = (cb) => {
         const doc = {
           _id: `p-${pseudonym}`,
           entity: 'user',
-          inserted: Date.now()
+          pseudonym,
+          inserted: Date.now(),
+          attempts: 0
         };
 
         db.insert(doc, (err, data) => {
