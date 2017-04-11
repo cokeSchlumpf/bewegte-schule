@@ -24,12 +24,10 @@ api.get('/', (req, res) => {
         }
         else {
           const user = docs[0];
-          const uuser = {
-            _id: user._id,
-            _rev: user._rev,
+          const uuser = _.assign({}, user, {
             token: 0,
             lastActivity: Date.now()
-          };
+          });
 
           db.insert(uuser, (err) => {
             if (err) {
