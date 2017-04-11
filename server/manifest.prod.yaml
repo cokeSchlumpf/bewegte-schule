@@ -1,0 +1,7 @@
+applications:
+- name: gas-bewegt-sich
+  command: npm run start:dep
+  memory: 256M
+  env:
+    NODE_ENV: prod
+    BS_CODE: StudieGaS#2017

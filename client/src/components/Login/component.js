@@ -39,7 +39,7 @@ const Login = ({ errors = {}, isLoading = {}, registerSuccess, value = {}, onVal
       <Icon name='checkmark' />
       <Message.Content>
         <Message.Header>Pseudonym erfolgreich erstellt</Message.Header>
-        Ab sofort kannst du dich mit deinem Pseudonym und deinem Benutzername hier anmelden.
+        Ab sofort kannst du dich mit deinem Pseudonym und deinem Passwort hier anmelden. Melde dich gleich an, um deinen ersten Fragebogen zu beantworten.
     </Message.Content>
     </Message>
   );

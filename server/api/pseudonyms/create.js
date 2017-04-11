@@ -4,8 +4,11 @@ const config = require('../../config');
 const dockerNames = require('docker-names');
 const errors = require('../errors');
 const winston = require('winston');
+const words = require('./words');
 
 const createPseudonym = (cb) => {
+  dockerNames.left = words.left;
+  dockerNames.right = words.right;
   const pseudonym = dockerNames.getRandomName();
 
   cloudant(db => {

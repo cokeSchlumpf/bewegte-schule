@@ -13,3 +13,7 @@
 .logingrid .column .button {
   width: 100%;
 }
+
+.logingrid-subtitle {
+  margin: 1em 0;
+}

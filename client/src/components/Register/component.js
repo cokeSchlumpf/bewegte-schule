@@ -40,7 +40,7 @@ const Login = ({ error, isLoading = false, pseudonym = 'no_name', value = {}, on
           </Header.Content>
         </Header>
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          <b>Notiere dir dein Pseudonym gut!</b> Du brauchst es bei jeder Befragung und Untersuchung während der Studie. Es kann nicht erneut angefordert oder zurückgesetzt werden.
         </p>
       </Segment>
       <Segment>
@@ -49,7 +49,7 @@ const Login = ({ error, isLoading = false, pseudonym = 'no_name', value = {}, on
           error={!_.isUndefined(error)}>
 
           <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.
+            Erstelle dir ein Passwort und notiere auch dieses gut! Es kann nicht zurückgesetzt werden. Auch dieses brauchst für jede (Online-)Befragung und zur Anmeldung auf dem Online-Portal.
           </p>
           <Form.Input
             label="Passwort" type="password" icon="lock" iconPosition="left"

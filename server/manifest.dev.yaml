@@ -1,0 +1,7 @@
+applications:
+- name: dev-gas-bewegt-sich
+  command: npm run start:dep
+  memory: 256M
+  env:
+    NODE_ENV: dev
+    BS_CODE: gas

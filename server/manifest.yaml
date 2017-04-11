@@ -1,5 +1,0 @@
----
-applications:
- - name: bewegte-schule
-   command: npm run start:dep
-   memory: 256M

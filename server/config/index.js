@@ -1,4 +1,4 @@
 module.exports = {
-  code: 'gas',
+  code: process.env.BS_CODE || 'gas',
   'dbname': 'gas'
 };
