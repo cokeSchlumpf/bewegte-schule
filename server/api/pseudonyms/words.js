@@ -100,7 +100,7 @@ module.exports = {
     'rumpelstielzchen',
     'schäfchen',
     'schlumpfinchen',
-    'schneewitchen',
+    'schneewittchen',
     'schneiderlein',
     'schweinchen',
     'stiefmütterchen',
