@@ -2,6 +2,8 @@ applications:
 - name: dev-gas-bewegt-sich
   command: npm run start:dep
   memory: 256M
+  services:
+    - cloudant
   env:
     NODE_ENV: dev
     BS_CODE: gas

@@ -1,7 +1,9 @@
 applications:
 - name: gas-bewegt-sich
   command: npm run start:dep
-  memory: 256M
+  memory: 512M
+  services:
+    - cloudant
   env:
     NODE_ENV: prod
     BS_CODE: StudieGaS#2017
